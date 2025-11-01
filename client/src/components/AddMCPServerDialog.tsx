@@ -84,6 +84,7 @@ const AddMCPServerDialog = ({
 
   const removeEnvVar = useCallback(
     (key: string) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [key]: _removed, ...rest } = newServer.env || {};
       setNewServer((prev) => ({ ...prev, env: rest }));
       setShownEnvVars((prev) => {
@@ -120,7 +121,7 @@ const AddMCPServerDialog = ({
       toast({
         title: "Error",
         description: "Server name is required.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -132,7 +133,7 @@ const AddMCPServerDialog = ({
       toast({
         title: "Error",
         description: `URL is required for ${newServer.server_type.toUpperCase()} servers.`,
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -141,7 +142,7 @@ const AddMCPServerDialog = ({
       toast({
         title: "Error",
         description: "Command is required for STDIO servers.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
@@ -194,7 +195,7 @@ const AddMCPServerDialog = ({
       // Show success toast
       toast({
         title: "Success",
-        description: `${createdServer.server_name} has been added successfully.`
+        description: `${createdServer.server_name} has been added successfully.`,
       });
     } catch (error) {
       console.error("Failed to add server:", error);
@@ -206,7 +207,7 @@ const AddMCPServerDialog = ({
       toast({
         title: "Error",
         description: errorMessage,
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);

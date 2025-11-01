@@ -10,7 +10,12 @@ type ToastOptions = {
 };
 
 // Adapter function to maintain compatibility with existing toast API
-function toast({ title, description, variant = "default", duration }: ToastOptions) {
+function toast({
+  title,
+  description,
+  variant = "default",
+  duration,
+}: ToastOptions) {
   const message = title || "";
 
   switch (variant) {
@@ -33,19 +38,31 @@ function toast({ title, description, variant = "default", duration }: ToastOptio
 }
 
 // For backward compatibility, also export a simple function with just message
-toast.success = (message: string, options?: { description?: string; duration?: number }) => {
+toast.success = (
+  message: string,
+  options?: { description?: string; duration?: number },
+) => {
   return sonnerToast.success(message, options);
 };
 
-toast.error = (message: string, options?: { description?: string; duration?: number }) => {
+toast.error = (
+  message: string,
+  options?: { description?: string; duration?: number },
+) => {
   return sonnerToast.error(message, options);
 };
 
-toast.info = (message: string, options?: { description?: string; duration?: number }) => {
+toast.info = (
+  message: string,
+  options?: { description?: string; duration?: number },
+) => {
   return sonnerToast.info(message, options);
 };
 
-toast.warning = (message: string, options?: { description?: string; duration?: number }) => {
+toast.warning = (
+  message: string,
+  options?: { description?: string; duration?: number },
+) => {
   return sonnerToast.warning(message, options);
 };
 

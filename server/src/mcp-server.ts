@@ -624,9 +624,14 @@ const validateCreateMcpServer = (req: Request, res: Response, next: any) => {
     (req as any).validatedBody = validated;
 
     // Type-specific validation
-    if ((validated.server_type === "http" || validated.server_type === "sse") && !validated.url) {
+    if (
+      (validated.server_type === "http" || validated.server_type === "sse") &&
+      !validated.url
+    ) {
       const serverTypeText = validated.server_type === "sse" ? "SSE" : "HTTP";
-      return res.status(400).json({ error: `${serverTypeText}类型的服务器必须提供URL` });
+      return res
+        .status(400)
+        .json({ error: `${serverTypeText}类型的服务器必须提供URL` });
     }
     if (validated.server_type === "stdio" && !validated.command) {
       return res.status(400).json({ error: "STDIO类型的服务器必须提供命令" });
@@ -672,7 +677,13 @@ app.get(
       await ensureVectorDatabaseReady();
       const db = vectorDatabase.db!;
 
-      const { enabled, server_type, page = "1", limit = "50", include_tools = "false" } = req.query;
+      const {
+        enabled,
+        server_type,
+        page = "1",
+        limit = "50",
+        include_tools = "false",
+      } = req.query;
       const offset = (parseInt(page as string) - 1) * parseInt(limit as string);
       const includeTools = include_tools === "true";
 
@@ -727,7 +738,9 @@ app.get(
                 WHERE tool_name LIKE ?
                 ORDER BY tool_name
               `;
-              const tools = db.prepare(toolsSql).all(`${server.server_name}__%`) as Array<{
+              const tools = db
+                .prepare(toolsSql)
+                .all(`${server.server_name}__%`) as Array<{
                 tool_md5: string;
                 tool_name: string;
                 description: string | null;
@@ -735,26 +748,32 @@ app.get(
               }>;
 
               // 格式化工具名称，去除服务器前缀
-              const formattedTools = tools.map(tool => ({
+              const formattedTools = tools.map((tool) => ({
                 tool_name: tool.tool_name,
-                display_name: tool.tool_name.replace(`${server.server_name}__`, ''),
+                display_name: tool.tool_name.replace(
+                  `${server.server_name}__`,
+                  "",
+                ),
                 tool_md5: tool.tool_md5,
                 description: tool.description,
-                created_at: tool.created_at
+                created_at: tool.created_at,
               }));
 
               return {
                 ...server,
-                tools: formattedTools
+                tools: formattedTools,
               } as FormattedMcpServerRow & { tools: typeof formattedTools };
             } catch (error) {
-              console.error(`获取服务器 ${server.server_name} 的工具失败:`, error);
+              console.error(
+                `获取服务器 ${server.server_name} 的工具失败:`,
+                error,
+              );
               return {
                 ...server,
-                tools: []
+                tools: [],
               } as FormattedMcpServerRow & { tools: [] };
             }
-          })
+          }),
         );
       }
 
@@ -835,7 +854,10 @@ app.post(
       const insertData = {
         server_name: data.server_name,
         server_type: data.server_type,
-        url: (data.server_type === "http" || data.server_type === "sse") ? data.url || null : null,
+        url:
+          data.server_type === "http" || data.server_type === "sse"
+            ? data.url || null
+            : null,
         command: data.server_type === "stdio" ? data.command || null : null,
         args:
           data.args && data.args.length > 0 ? JSON.stringify(data.args) : null,
@@ -923,12 +945,16 @@ app.put(
 
         // Type-specific validation if both type and respective fields are provided
         if (
-          (validated.server_type === "http" || validated.server_type === "sse") &&
+          (validated.server_type === "http" ||
+            validated.server_type === "sse") &&
           !validated.url &&
           !(req as any).existingServer?.url
         ) {
-          const serverTypeText = validated.server_type === "sse" ? "SSE" : "HTTP";
-          return res.status(400).json({ error: `${serverTypeText}类型的服务器必须提供URL` });
+          const serverTypeText =
+            validated.server_type === "sse" ? "SSE" : "HTTP";
+          return res
+            .status(400)
+            .json({ error: `${serverTypeText}类型的服务器必须提供URL` });
         }
         if (
           validated.server_type === "stdio" &&

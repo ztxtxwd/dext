@@ -32,12 +32,14 @@ const CopyIcon = () => (
   />
 );
 
-const ToolListDialog = ({ serverName, tools, children }: ToolListDialogProps) => {
+const ToolListDialog = ({
+  serverName,
+  tools,
+  children,
+}: ToolListDialogProps) => {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-2xl max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
@@ -45,7 +47,8 @@ const ToolListDialog = ({ serverName, tools, children }: ToolListDialogProps) =>
             {serverName} Tools
           </DialogTitle>
           <DialogDescription>
-            This server provides {tools.length} tool{tools.length !== 1 ? 's' : ''}.
+            This server provides {tools.length} tool
+            {tools.length !== 1 ? "s" : ""}.
           </DialogDescription>
         </DialogHeader>
 
@@ -86,7 +89,7 @@ const ToolHoverCard = ({ tool }: ToolHoverCardProps) => {
         duration: 2000,
       });
     } catch (err) {
-      console.error('Failed to copy to clipboard:', err);
+      console.error("Failed to copy to clipboard:", err);
       // Show error toast notification
       toast({
         title: "Copy Failed",
@@ -107,7 +110,11 @@ const ToolHoverCard = ({ tool }: ToolHoverCardProps) => {
                 <Badge
                   variant="secondary"
                   className="text-xs truncate block"
-                  title={tool.display_name.length > 15 ? tool.display_name : undefined}
+                  title={
+                    tool.display_name.length > 15
+                      ? tool.display_name
+                      : undefined
+                  }
                 >
                   {tool.display_name}
                 </Badge>
@@ -129,7 +136,9 @@ const ToolHoverCard = ({ tool }: ToolHoverCardProps) => {
           <div className="flex items-center justify-between">
             <h4
               className="font-semibold text-sm truncate pr-2"
-              title={tool.display_name.length > 20 ? tool.display_name : undefined}
+              title={
+                tool.display_name.length > 20 ? tool.display_name : undefined
+              }
             >
               {tool.display_name}
             </h4>
@@ -171,11 +180,13 @@ const ToolHoverCard = ({ tool }: ToolHoverCardProps) => {
               </div>
               <div className="flex flex-col items-end gap-1">
                 <span className="font-medium text-xs">Added</span>
-                <span className="text-xs">{new Date(tool.created_at).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric'
-                })}</span>
+                <span className="text-xs">
+                  {new Date(tool.created_at).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
               </div>
             </div>
           </div>

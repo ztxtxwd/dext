@@ -121,7 +121,7 @@ const SamplingRequest = ({
       toast({
         title: "Error",
         description: `There was an error validating the message result: ${validationResult.error.message}`,
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }

@@ -149,8 +149,10 @@ const PromptsTab = ({
                       id={arg.name}
                       placeholder={`Enter ${arg.name}`}
                       value={promptArgs[arg.name] || ""}
-                      onChange={(value) => handleInputChange(arg.name, value)}
-                      onInputChange={(value) =>
+                      onChange={(value: string) =>
+                        handleInputChange(arg.name, value)
+                      }
+                      onInputChange={(value: string) =>
                         handleInputChange(arg.name, value)
                       }
                       onFocus={() => handleFocus(arg.name)}

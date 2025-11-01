@@ -252,7 +252,10 @@ async function initializeMCPClient(): Promise<MultiServerMCPClient | null> {
         console.log(
           `配置stdio服务器: ${serverRow.server_name} (${serverRow.command} ${serverConfigForClient.args?.join(" ") || ""})`,
         );
-      } else if ((serverRow.server_type === "http" || serverRow.server_type === "sse") && serverRow.url) {
+      } else if (
+        (serverRow.server_type === "http" || serverRow.server_type === "sse") &&
+        serverRow.url
+      ) {
         // HTTP 或 SSE URL类型的MCP服务器
         serverConfigForClient.url = serverRow.url;
 

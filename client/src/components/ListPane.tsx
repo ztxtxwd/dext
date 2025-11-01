@@ -59,9 +59,7 @@ const ListPane = <T extends object>({
     <div className="bg-card border border-border rounded-lg shadow-sm">
       <div className="p-4 border-b border-gray-200 dark:border-border">
         <div className="flex items-center justify-between gap-4">
-          <h3 className="font-semibold dark:text-white shrink-0">
-            {title}
-          </h3>
+          <h3 className="font-semibold dark:text-white shrink-0">{title}</h3>
           <div className="flex items-center justify-end min-w-0 flex-1">
             {!isSearchExpanded ? (
               <button

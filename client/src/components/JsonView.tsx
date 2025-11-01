@@ -49,7 +49,7 @@ const JsonView = memo(
         toast({
           title: "Error",
           description: `There was an error copying result into the clipboard: ${error instanceof Error ? error.message : String(error)}`,
-          variant: "destructive"
+          variant: "destructive",
         });
       }
     }, [toast, normalizedData, setCopied]);
@@ -154,7 +154,7 @@ const JsonNode = memo(
           toast({
             title: "Error",
             description: `There was an error copying result into the clipboard: ${error instanceof Error ? error.message : String(error)}`,
-            variant: "destructive"
+            variant: "destructive",
           });
         }
       },

@@ -410,9 +410,7 @@ const ToolsTab = ({
                     </div>
                     <div
                       className={`transition-all ${
-                        isOutputSchemaExpanded
-                          ? ""
-                          : "max-h-32 overflow-y-auto"
+                        isOutputSchemaExpanded ? "" : "max-h-32 overflow-y-auto"
                       }`}
                     >
                       <JsonView data={selectedTool.outputSchema} />
@@ -491,7 +489,7 @@ const ToolsTab = ({
                         toast({
                           title: "Error",
                           description: `There was an error copying input to the clipboard: ${error instanceof Error ? error.message : String(error)}`,
-                          variant: "destructive"
+                          variant: "destructive",
                         });
                       }
                     }}

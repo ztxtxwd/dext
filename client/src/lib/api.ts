@@ -37,7 +37,7 @@ interface MCPServerCreateRequest {
   server_type: "http" | "stdio" | "sse";
   url?: string;
   command?: string;
-  args?: string[] | Record<string, any>;
+  args?: string[];
   headers?: Record<string, string>;
   env?: Record<string, string>;
   description?: string;

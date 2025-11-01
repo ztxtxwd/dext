@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,7 +17,6 @@ import AddMCPServerDialog from "@/components/AddMCPServerDialog";
 import ToolListDialog from "@/components/ToolListDialog";
 import {
   Server,
-  Edit,
   Trash2,
   Plus,
   RefreshCw,
@@ -35,28 +34,9 @@ const MCPServersList = () => {
   const [error, setError] = useState<string | null>(null);
   const [showAddDialog, setShowAddDialog] = useState(false);
 
-  // Fetch servers on component mount
-  useEffect(() => {
-    fetchServers();
-  }, []);
+  const { toast } = useToast();
 
-  // Listen for custom event to open Add Server dialog
-  useEffect(() => {
-    const handleOpenDialog = (event: Event) => {
-      console.log("open-add-server-dialog event received", event);
-      event.preventDefault();
-      event.stopPropagation();
-      setShowAddDialog(true);
-    };
-
-    window.addEventListener("open-add-server-dialog", handleOpenDialog);
-
-    return () => {
-      window.removeEventListener("open-add-server-dialog", handleOpenDialog);
-    };
-  }, []);
-
-  const fetchServers = async () => {
+  const fetchServers = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -83,9 +63,28 @@ const MCPServersList = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [toast]);
 
-  const { toast } = useToast();
+  // Fetch servers on component mount
+  useEffect(() => {
+    fetchServers();
+  }, [fetchServers]);
+
+  // Listen for custom event to open Add Server dialog
+  useEffect(() => {
+    const handleOpenDialog = (event: Event) => {
+      console.log("open-add-server-dialog event received", event);
+      event.preventDefault();
+      event.stopPropagation();
+      setShowAddDialog(true);
+    };
+
+    window.addEventListener("open-add-server-dialog", handleOpenDialog);
+
+    return () => {
+      window.removeEventListener("open-add-server-dialog", handleOpenDialog);
+    };
+  }, []);
 
   const handleServerAdded = (newServer: MCPServer) => {
     // Add the new server to the current list immediately for instant feedback

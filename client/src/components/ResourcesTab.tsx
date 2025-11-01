@@ -249,10 +249,10 @@ const ResourcesTab = ({
                         id={key}
                         placeholder={`Enter ${key}`}
                         value={templateValues[key] || ""}
-                        onChange={(value) =>
+                        onChange={(value: string) =>
                           handleTemplateValueChange(key, value)
                         }
-                        onInputChange={(value) =>
+                        onInputChange={(value: string) =>
                           handleTemplateValueChange(key, value)
                         }
                         options={completions[key] || []}

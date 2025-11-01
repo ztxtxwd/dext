@@ -37,6 +37,7 @@ const Header = () => {
     if (commandOpen && servers.length === 0) {
       fetchServers();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commandOpen]);
 
   const fetchServers = async () => {

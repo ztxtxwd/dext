@@ -198,7 +198,8 @@ const DynamicJsonForm = forwardRef<DynamicJsonFormRef, DynamicJsonFormProps>(
 
         toast({
           title: "Success",
-          description: "The JSON data has been successfully copied to your clipboard."
+          description:
+            "The JSON data has been successfully copied to your clipboard.",
         });
 
         setTimeout(() => {
@@ -206,10 +207,10 @@ const DynamicJsonForm = forwardRef<DynamicJsonFormRef, DynamicJsonFormProps>(
         }, 2000);
       } catch (error) {
         toast({
-            title: "Error",
-            description: `Failed to copy JSON: ${error instanceof Error ? error.message : String(error)}`,
-            variant: "destructive"
-          });
+          title: "Error",
+          description: `Failed to copy JSON: ${error instanceof Error ? error.message : String(error)}`,
+          variant: "destructive",
+        });
       }
     }, [toast, value]);
 
