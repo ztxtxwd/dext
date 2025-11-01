@@ -318,7 +318,7 @@ async function initializeMCPClient(): Promise<MultiServerMCPClient | null> {
     console.log("MCP客户端初始化成功!");
     console.log(
       "可用工具:",
-      tools.map((tool) => tool.name),
+      tools.map((tool: any) => tool.name),
     );
     globalMCPClient = client;
     return client;
@@ -508,7 +508,7 @@ async function main(): Promise<void> {
 
     // 获取所有工具名称并生成动态服务器名称
     const tools = await mcpClient.getTools();
-    const toolNames = tools.map((tool) => tool.name);
+    const toolNames = tools.map((tool: any) => tool.name);
     const dynamicServerName = `dext-with-${toolNames.join(", ")}`;
 
     console.log(`动态服务器名称: ${dynamicServerName}`);
