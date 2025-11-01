@@ -1,5 +1,5 @@
 // 测试相似工具检测和删除功能
-import VectorSearch from "./vector_search.js";
+import VectorSearch, { SimilarTool } from "./vector_search.js";
 import { vectorizeString } from "./index.js";
 
 async function testSimilarToolDetection(): Promise<void> {
@@ -27,8 +27,8 @@ async function testSimilarToolDetection(): Promise<void> {
     // 测试相似工具识别
     console.log("\n🔍 测试相似工具识别:");
 
-    // 创建一些测试工具数据
-    const testTools = [
+    // 创建一些测试��具数据
+    const testTools: SimilarTool[] = [
       {
         tool_md5: "abc123",
         tool_name: "existing_tool_v1",

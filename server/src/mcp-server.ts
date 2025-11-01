@@ -718,12 +718,13 @@ app.get(
       const dataParams = [...params, parseInt(limit as string), offset];
       const rows = db.prepare(dataSql).all(...dataParams);
 
-      let servers = rows.map(formatMcpServerRow);
+      let servers: (FormattedMcpServerRow | null)[] =
+        rows.map(formatMcpServerRow);
 
       // 如果需要包含工具列表，则为每个服务器查询对应的工具
       if (includeTools && servers.length > 0) {
         servers = await Promise.all(
-          servers.map(async (server) => {
+          servers.map(async (server: FormattedMcpServerRow | null) => {
             if (!server) return server;
 
             try {
