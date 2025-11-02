@@ -1,6 +1,6 @@
 {
   "name": "@ztxtxwd/dext-client",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Client-side application for Dext",
   "license": "MIT",
   "author": "Tianxiong Zhao",
