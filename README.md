@@ -1,6 +1,6 @@
 # Dext
 
-**Dext** (Dynamic Extension Tool) is an advanced MCP tool retrieval and vector indexing system built on top of the MCP Inspector architecture. It combines powerful tool management capabilities with AI-powered semantic search to help you discover and utilize the right tools for your tasks.
+**Dext** (from "Dexterous") is an advanced MCP tool retrieval and vector indexing system built on top of the MCP Inspector architecture. The name embodies the concept of a flexible, skillful right hand capable of wielding countless tools with agility and precision. It combines powerful tool management capabilities with AI-powered semantic search to help you discover and utilize the right tools for your tasks.
 
 ## Key Features
 
