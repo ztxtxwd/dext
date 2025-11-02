@@ -42,7 +42,7 @@ npm install -g @ztxtxwd/dext
 Or run directly with npx:
 
 ```bash
-npx @ztxtxwd/dext
+npx @ztxtxwd/dext@latest
 ```
 
 The server will start up and the UI will be accessible at `http://localhost:6274`.
