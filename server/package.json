@@ -1,6 +1,6 @@
 {
   "name": "@ztxtxwd/dext-server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Server-side application for Dext",
   "license": "MIT",
   "author": "Tianxiong Zhao",
