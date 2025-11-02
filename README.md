@@ -96,8 +96,8 @@ Through the web UI, click "Add Server" and provide:
 Dext itself runs as an MCP server, exposing tool retrieval capabilities. You can connect to it as an MCP server to get intelligent tool recommendations:
 
 ```bash
-# Connect to Dext's MCP server (default port 3000)
-npx @modelcontextprotocol/inspector http://localhost:3000/mcp
+# Connect to Dext's MCP server (default port 3398)
+npx @modelcontextprotocol/inspector http://localhost:3398/mcp
 ```
 
 Available MCP tools:
@@ -159,7 +159,7 @@ Dext provides convenient buttons to export server launch configurations for use 
   ```json
   {
     "type": "sse",
-    "url": "http://localhost:3000/events",
+    "url": "http://localhost:3398/events",
     "note": "For SSE connections, add this URL directly in Client"
   }
   ```
@@ -169,7 +169,7 @@ Dext provides convenient buttons to export server launch configurations for use 
   ```json
   {
     "type": "streamable-http",
-    "url": "http://localhost:3000/mcp",
+    "url": "http://localhost:3398/mcp",
     "note": "For Streamable HTTP connections, add this URL directly in your MCP Client"
   }
   ```
@@ -200,7 +200,7 @@ Dext provides convenient buttons to export server launch configurations for use 
     "mcpServers": {
       "default-server": {
         "type": "sse",
-        "url": "http://localhost:3000/events",
+        "url": "http://localhost:3398/events",
         "note": "For SSE connections, add this URL directly in Client"
       }
     }
@@ -214,7 +214,7 @@ Dext provides convenient buttons to export server launch configurations for use 
     "mcpServers": {
       "default-server": {
         "type": "streamable-http",
-        "url": "http://localhost:3000/mcp",
+        "url": "http://localhost:3398/mcp",
         "note": "For Streamable HTTP connections, add this URL directly in your MCP Client"
       }
     }
@@ -369,7 +369,7 @@ Dext automatically detects the transport type from your config file. You can spe
   "mcpServers": {
     "my-sse-server": {
       "type": "sse",
-      "url": "http://localhost:3000/sse"
+      "url": "http://localhost:3398/sse"
     }
   }
 }
@@ -382,7 +382,7 @@ Dext automatically detects the transport type from your config file. You can spe
   "mcpServers": {
     "my-http-server": {
       "type": "streamable-http",
-      "url": "http://localhost:3000/mcp"
+      "url": "http://localhost:3398/mcp"
     }
   }
 }
