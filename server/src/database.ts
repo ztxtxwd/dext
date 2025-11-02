@@ -1,16 +1,23 @@
 // SQLite数据库管理模块 (使用better-sqlite3 + sqlite-vec)
 import Database from "better-sqlite3";
 import * as sqliteVec from "sqlite-vec";
-import { readFileSync } from "fs";
+import { readFileSync, mkdirSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { homedir } from "os";
 import crypto from "crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// 数据库文件路径
-const DB_PATH = join(__dirname, "tools_vector.db");
+// 数据库文件路径 - 使用用户根目录下的 .dext 目录
+const DEXT_DIR = join(homedir(), ".dext");
+const DB_PATH = join(DEXT_DIR, "tools_vector.db");
+
+// 确保 .dext 目录存在
+if (!existsSync(DEXT_DIR)) {
+  mkdirSync(DEXT_DIR, { recursive: true });
+}
 
 // 类型定义
 export interface ToolVector {

@@ -14,7 +14,7 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/database_schema.sql build/",
     "start": "node build/index.js",
     "dev": "tsx watch --clear-screen=false src/index.ts",
     "dev:windows": "tsx watch --clear-screen=false src/index.ts < NUL"
