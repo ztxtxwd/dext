@@ -1139,10 +1139,10 @@ app.post("/mcp", cors(corsOptions), async (req: Request, res: Response) => {
   await transport.handleRequest(req, res, req.body);
 });
 
-const port = parseInt(process.env.MCP_SERVER_PORT || "3000");
+const port = parseInt(process.env.MCP_SERVER_PORT || "3398");
 app
   .listen(port, () => {
-    console.log(`Demo MCP Server running on http://localhost:${port}/mcp`);
+    console.log(`Dext MCP Server running on http://localhost:${port}/mcp`);
   })
   .on("error", (error: Error) => {
     console.error("Server error:", error);
