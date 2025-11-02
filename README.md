@@ -49,17 +49,23 @@ The server will start up and the UI will be accessible at `http://localhost:6274
 
 ### Configuration
 
-Dext requires an embedding model for vector-based tool search. Configure your embedding provider via environment variables:
+Dext requires an embedding model for vector-based tool search. You must configure the following environment variables before starting Dext:
 
 ```bash
 # Required: API key for embedding service
-EMBEDDING_API_KEY=your-api-key-here
+export EMBEDDING_API_KEY=your-api-key-here
 
-# Optional: Embedding model configuration
-EMBEDDING_MODEL_NAME=doubao-embedding-text-240715
-EMBEDDING_VECTOR_DIMENSION=1024
-EMBEDDING_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
+# Required: Embedding model name
+export EMBEDDING_MODEL_NAME=text-embedding-3-small
+
+# Required: Embedding API base URL
+export EMBEDDING_BASE_URL=https://api.openai.com/v1
+
+# Optional: Vector dimension (depends on your embedding model)
+export EMBEDDING_VECTOR_DIMENSION=1024
 ```
+
+These environment variables are **required**. Dext will not start without them and will display an error message with configuration instructions.
 
 You can also create a `.env` file in your project directory with these settings.
 

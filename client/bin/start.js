@@ -268,6 +268,39 @@ async function main() {
   const CLIENT_PORT = process.env.CLIENT_PORT ?? "6274";
   const SERVER_PORT = process.env.SERVER_PORT ?? DEFAULT_MCP_PROXY_LISTEN_PORT;
 
+  // Check required embedding environment variables
+  const requiredEnvVars = [
+    "EMBEDDING_API_KEY",
+    "EMBEDDING_MODEL_NAME",
+    "EMBEDDING_BASE_URL",
+  ];
+
+  const missingEnvVars = requiredEnvVars.filter(
+    (varName) => !process.env[varName],
+  );
+
+  if (missingEnvVars.length > 0) {
+    console.error("\n❌ Error: Missing required environment variables!\n");
+    console.error("The following environment variables must be configured:\n");
+    missingEnvVars.forEach((varName) => {
+      console.error(`  - ${varName}`);
+    });
+    console.error("\nPlease set these environment variables and try again.");
+    console.error("Example:\n");
+    if (missingEnvVars.includes("EMBEDDING_API_KEY")) {
+      console.error('  export EMBEDDING_API_KEY="your-api-key"');
+    }
+    if (missingEnvVars.includes("EMBEDDING_MODEL_NAME")) {
+      console.error('  export EMBEDDING_MODEL_NAME="text-embedding-3-small"');
+    }
+    if (missingEnvVars.includes("EMBEDDING_BASE_URL")) {
+      console.error(
+        '  export EMBEDDING_BASE_URL="https://api.openai.com/v1"\n',
+      );
+    }
+    process.exit(1);
+  }
+
   console.log(
     isDev ? "Starting Dext in development mode..." : "Starting Dext...",
   );
