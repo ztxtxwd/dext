@@ -1,4 +1,5 @@
-import { marked } from "marked";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 
 interface MarkdownProps {
@@ -11,17 +12,6 @@ const Markdown = ({ content, className }: MarkdownProps) => {
     return null;
   }
 
-  const configureMarked = () => {
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-    });
-  };
-
-  configureMarked();
-
-  const htmlContent = marked(content);
-
   return (
     <div
       className={cn(
@@ -30,8 +20,9 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         "[&_a]:text-blue-600 [&_a:hover]:text-blue-800 dark:[&_a]:text-blue-400 dark:[&_a:hover]:text-blue-300",
         className,
       )}
-      dangerouslySetInnerHTML={{ __html: htmlContent }}
-    />
+    >
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+    </div>
   );
 };
 

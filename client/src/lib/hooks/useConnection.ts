@@ -418,7 +418,7 @@ export function useConnection({
 
       if (hasEmptyAuthHeader) {
         toast({
-          title: "Error",
+          title: "Invalid Authorization Header",
           description:
             "Authorization header is enabled but empty. Please add a token or disable the header.",
           variant: "destructive",
