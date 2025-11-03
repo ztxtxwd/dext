@@ -102,9 +102,8 @@ npx @modelcontextprotocol/inspector http://localhost:3398/mcp
 
 Available MCP tools:
 
-- `retrieve_tools`: Get relevant tools based on natural language queries
-- `list_tools`: List all indexed tools from all servers
-- `get_server_tools`: Get tools from a specific server
+- `retriever`: Get relevant tools based on natural language queries with semantic search
+- `executor`: Execute MCP tools by their MD5 identifier
 
 ## How Vector Search Works
 
